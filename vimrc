@@ -58,7 +58,7 @@ filetype plugin indent on    " required
 
 syntax on
 
-set mouse=a number
+set mouse=a number wrap backspace=2 ruler
 set sessionoptions-=options
 set tabstop=4 expandtab
 
@@ -66,3 +66,9 @@ filetype plugin indent on
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+colorscheme slate
+
+if has('gui_running')
+    set guifont=Lucida_Console:h10
+endif
