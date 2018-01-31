@@ -63,7 +63,7 @@ syntax on
 set mouse=a number wrap backspace=2 ruler
 set sessionoptions-=options
 set tabstop=4 expandtab
-
+set clipboard=unnamedplus
 filetype plugin indent on
 
 autocmd StdinReadPre * let s:std_in=1
