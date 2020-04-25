@@ -20,6 +20,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'valloric/youcompleteme'
+Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'majutsushi/tagbar'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
@@ -64,12 +65,17 @@ set mouse=a number wrap backspace=2 ruler
 set sessionoptions-=options
 set tabstop=4 expandtab
 set clipboard=unnamedplus
+set laststatus=2
 filetype plugin indent on
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-colorscheme slate
+set t_Co=256   " This is may or may not needed.
+
+set background=light
+colorscheme PaperColor
+" colorscheme slate
 
 if has('gui_running')
     set guifont=Lucida_Console:h10

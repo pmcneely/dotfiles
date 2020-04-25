@@ -121,7 +121,18 @@ fi
 # Personal additions
 #########################################################################################
 
-source ~/dotfiles/git-prompt.sh
+
+# Powerline configuration
+if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+  powerline-daemon -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+  source /usr/share/powerline/bindings/bash/powerline.sh
+else
+  source ~/dotfiles/git-prompt.sh
+  PS1=$PS1' $(__git_ps1 "(%s)")\n\$ '
+fi
+
 
 alias reload='source ~/.bashrc'
 alias cls='printf "\033c"'
@@ -129,9 +140,8 @@ alias d_exited_kill="docker rm $(docker ps -a -f status=exited -f status=created
 alias dkill="docker rm -f $(docker ps -a -q)"
 alias pretty-log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
-PS1=$PS1' $(__git_ps1 "(%s)")\n\$ '
-
 export WORKON_HOME=~/venvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 
 # pip bash completion start
@@ -147,5 +157,7 @@ complete -o default -F _pip_completion pip
 # parse_git_branch() {
 #     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 #     }
+
+
 
 
