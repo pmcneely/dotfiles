@@ -124,15 +124,29 @@ fi
 
 # Powerline configuration
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+  # NB - This is here, but this appears to be an unsopported/dead code.
+  # Use the other one
   powerline-daemon -q
   POWERLINE_BASH_CONTINUATION=1
   POWERLINE_BASH_SELECT=1
   source /usr/share/powerline/bindings/bash/powerline.sh
+elif [ -f /home/$USER/.local/lib/python3.8/site-packages/powerline/bindings/bash/powerline.sh ]; then
+  powerline-daemon -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+  source /home/$USER/.local/lib/python3.8/site-packages/powerline/bindings/bash/powerline.sh
 else
   source ~/dotfiles/git-prompt.sh
   PS1=$PS1' $(__git_ps1 "(%s)")\n\$ '
 fi
 
+# function _update_ps1() {
+#     PS1=$(powerline-shell $?)
+# }
+# 
+# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# fi
 
 alias reload='source ~/.bashrc'
 alias cls='printf "\033c"'
