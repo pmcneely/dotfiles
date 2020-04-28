@@ -71,9 +71,12 @@ filetype plugin indent on
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+" The powerline folks haven't cleaned this up and it would be great ... but
+" ain't nobody got time for that. Use VS Code like a sane person
+"
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
 
 set t_Co=256   " This is may or may not needed.
 
