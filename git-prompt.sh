@@ -1,7 +1,5 @@
 # bash/zsh git prompt support
 #
-# Brazenly recovered from teh webz on the Git main repo at /contrib/completion/git-prompt.sh
-#
 # Copyright (C) 2006,2007 Shawn O. Pearce <spearce@spearce.org>
 # Distributed under the GNU General Public License, version 2.0.
 #

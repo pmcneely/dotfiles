@@ -26,7 +26,7 @@ reboot
 ```
 I use a shared directory call with my host OS; to confirm it is working
 ```
-ls -lah /media/host_directory/
+ls -lah /media/<host_directory>/
 ```
 
 Install git:
@@ -101,32 +101,35 @@ https://github.com/NLKNguyen/papercolor-theme
 sudo snap install code --classic
 ```
 
-## i3 Activation (not for the uninitiated...)
-Activate i3 (if desired: **NB** This is not a standard/'typical' user-friendly environment!)
-```
-reboot
-```
---> Select i3 before login w/password
-```
-rm .config/i3/config
-ln dotfiles/i3_config .config/i3/config
-```
-NB - i3 configuration is located at ~/.config/i3/config, ignore other paths
+## i3 Activation (not for the uninitiated - see https://i3wm.org/docs/userguide.html and the config for use)
 
-- Activate i3 config with <meta, likely Windows key> + shift + c
-- Add a background with:
-```
-cp /media/host_directory/CoolJpeg.jpg Pictures/
-echo "feh --bg-scale ~/Pictures/CoolJpeg.jpg" >> .profile
-```
+> Activate i3 (if desired: **NB** This is not a standard/'typical' user-friendly > environment!)
+> ```
+> reboot
+> ```
+> --> Select i3 before login w/password
+> ```
+> rm .config/i3/config
+> ln dotfiles/i3_config .config/i3/config
+> ```
+> NB - i3 configuration is located at ~/.config/i3/config, ignore other paths
+> 
+> - Activate i3 config with <meta, likely Windows key> + shift + c
+> - Add a background with:
+> ```
+> cp /media/host_directory/CoolJpeg.jpg Pictures/
+> echo "feh --bg-scale ~/Pictures/CoolJpeg.jpg" >> .profile
+> ```
 
 
 powerline:
-See https://github.com/powerline/powerline (or maybe...?) https://devpro.media/install-powerline-ubuntu/#install-powerline
+See https://github.com/powerline/powerline for `pip3 install powerline-status`
+(or maybe...?) https://devpro.media/install-powerline-ubuntu/#install-powerline for the ubuntu `sudo apt install powerline` package. Neither is fully functional/batteries included - be ready to take a deep dive.
 NB: Click 'custom font' in terminal preferences to render powerline correctly!
 (For preference I tend to select `ubuntu monospace 12` for the font selection
-- These packages are both various states of decay/benign neglect. Handle with some caution
-### Powerlikne notes - WIP
+- These packages are both various states of decay/benign neglect. Handle with some caution. Using with Vim will require some chicanery with your python path. YMMV.
+
+### Powerline notes - WIP
 User configuration is expected at:
 ```
 mkdir -p $HOME/.config/powerline
