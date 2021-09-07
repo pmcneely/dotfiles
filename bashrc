@@ -61,6 +61,8 @@ _YLWBGD='\[\e[2;43m\]'
 _REDBGD='\[\e[1;41m\]'
 _BLKBGD='\[\e[40m\]'
 
+LOCAL_ALIAS=T-Rex
+
 if [ -n "$SSH_CLIENT" ]; then
     if [ -n "$REMOTE_ALIAS" ]; then
 	_REMOTE_ALIAS=$REMOTE_ALIAS
@@ -74,7 +76,11 @@ if [ -n "$SSH_CLIENT" ]; then
     	_CLIENT="$_YLWBGD""$_BLACK""$_REMOTE_ALIAS""$_BLKBGD"
     fi
 else
-    _CLIENT="$_GREEN"'(LOCAL)'"$_WHITE"
+    if [ -n $LOCAL_ALIAS ]; then
+        _CLIENT=$_GREEN$LOCAL_ALIAS$_WHITE
+    else
+        _CLIENT=$_GREEN'(LOCAL)'$_WHITE
+    fi
 fi
 
 if [ "$color_prompt" = yes ]; then
