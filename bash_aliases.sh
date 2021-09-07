@@ -24,3 +24,4 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias reload='source ~/.bashrc'
 alias cls='printf "\033c"'
+alias status='git fetch && git status'
