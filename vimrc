@@ -80,8 +80,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 set t_Co=256   " This is may or may not needed.
 
-# set background=light
-# colorscheme PaperColor
+" set background=light
+" colorscheme PaperColor
 colorscheme slate
 
 if has('gui_running')
