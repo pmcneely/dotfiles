@@ -30,11 +30,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -64,21 +59,10 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -117,42 +101,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#########################################################################################
-# Personal additions
-#########################################################################################
-
-
-# Powerline configuration
-if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
-  # NB - This is here, but this appears to be an unsopported/dead code.
-  # Use the other one
-  powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
-  source /usr/share/powerline/bindings/bash/powerline.sh
-elif [ -f /home/$USER/.local/lib/python3.8/site-packages/powerline/bindings/bash/powerline.sh ]; then
-  powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
-  source /home/$USER/.local/lib/python3.8/site-packages/powerline/bindings/bash/powerline.sh
-else
-  source ~/dotfiles/git-prompt.sh
-  PS1=$PS1' $(__git_ps1 "(%s)")\n\$ '
-fi
-
-# function _update_ps1() {
-#     PS1=$(powerline-shell $?)
-# }
-# 
-# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-# fi
 
 alias reload='source ~/.bashrc'
 alias cls='printf "\033c"'
-alias d_exited_kill="docker rm $(docker ps -a -f status=exited -f status=created -q)"
-alias dkill="docker rm -f $(docker ps -a -q)"
-alias pretty-log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 export WORKON_HOME=~/venvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
@@ -166,12 +117,4 @@ _pip_completion()
                    PIP_AUTO_COMPLETE=1 $1 ) )
 }
 complete -o default -F _pip_completion pip
-# pip bash completion end
-# Older, unsanitized git branch parser:
-# parse_git_branch() {
-#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-#     }
-
-
-
 
