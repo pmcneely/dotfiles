@@ -51,11 +51,34 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    # ORIGINAL LINE: PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
+# Define colors
+_BLUE='\[\e[1;34m\]'
+_GREEN='\[\e[1;32m\]'
+_WHITE='\[\e[1;0m\]'
+_RED='\[\e[1;31m\]'
+_BLACK='\[\e[1;30m\]'
+_YLWBGD='\[\e[2;43m\]'
+_REDBGD='\[\e[1;41m\]'
+_BLKBGD='\[\e[40m\]'
+
+if [ -n "$SSH_CLIENT" ]; then
+    if [ -n "$REMOTE_ALIAS" ]; then
+	_REMOTE_ALIAS=$REMOTE_ALIAS
+    	_CLIENT="$_YLWBGD""$_BLACK""$_REMOTE_ALIAS""$_BLKBGD"
+    else
+	HN=$(hostname -a | awk '{print $1 }' )
+	case $HN in
+	    (*"SMHS"*) _REMOTE_ALIAS=GWU-STUDENT-SERVER;;
+	    (*) _REMOTE_ALIAS=REMOTE;;
+	esac
+    	_CLIENT="$_YLWBGD""$_BLACK""$_REMOTE_ALIAS""$_BLKBGD"
+    fi
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    _CLIENT="$_GREEN"'(LOCAL)'"$_WHITE"
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1="$_GREEN\u@$_CLIENT$_WHITE:$_BLUE\w$_WHITE"
 fi
 unset color_prompt force_color_prompt
 
@@ -75,7 +98,7 @@ fi
 # some more ls aliases
 alias ll='ls -ahlF'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -1'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -101,6 +124,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if [ -f ~/dotfiles/git-prompt.sh ]; then
+  source ~/dotfiles/git-prompt.sh
+  PS1=$PS1' $(__git_ps1 "(%s)")'"\n$_WHITE\$ "
+  # PROMPT_COMMAND='__git_ps1 "'
+else
+  # Ensure that the second line is still constructed
+  PS1=$PS1"\n$_WHITE\$ "
+fi
 
 alias reload='source ~/.bashrc'
 alias cls='printf "\033c"'
@@ -118,3 +149,6 @@ _pip_completion()
 }
 complete -o default -F _pip_completion pip
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
