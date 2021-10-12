@@ -51,36 +51,10 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# Define colors
-_BLUE='\[\e[1;34m\]'
-_GREEN='\[\e[1;32m\]'
-_WHITE='\[\e[1;0m\]'
-_RED='\[\e[1;31m\]'
-_BLACK='\[\e[1;30m\]'
-_YLWBGD='\[\e[2;43m\]'
-_REDBGD='\[\e[1;41m\]'
-_BLKBGD='\[\e[40m\]'
-
-LOCAL_ALIAS=T-Rex
-
-if [ -n "$SSH_CLIENT" ]; then
-    if [ -n "$REMOTE_ALIAS" ]; then
-	_REMOTE_ALIAS=$REMOTE_ALIAS
-    	_CLIENT="$_YLWBGD""$_BLACK""$_REMOTE_ALIAS""$_BLKBGD"
-    else
-	HN=$(hostname -a | awk '{print $1 }' )
-	case $HN in
-	    (*"SMHS"*) _REMOTE_ALIAS=GWU-STUDENT-SERVER;;
-	    (*) _REMOTE_ALIAS=REMOTE;;
-	esac
-    	_CLIENT="$_YLWBGD""$_BLACK""$_REMOTE_ALIAS""$_BLKBGD"
-    fi
+if [ -f ~/dotfiles/hostname_mods.sh ]; then
+    source ~/dotfiles/hostname_mods.sh
 else
-    if [ -n $LOCAL_ALIAS ]; then
-        _CLIENT=$_GREEN$LOCAL_ALIAS$_WHITE
-    else
-        _CLIENT=$_GREEN'(LOCAL)'$_WHITE
-    fi
+    $_CLIENT="\h"
 fi
 
 if [ "$color_prompt" = yes ]; then
@@ -93,7 +67,7 @@ unset color_prompt force_color_prompt
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/dotfiles/bash_aliases ]; then
+if [[ -f ~/dotfiles/bash_aliases ]]; then
     . ~/dotfiles/bash_aliases
 fi
 
@@ -117,9 +91,13 @@ else
   PS1=$PS1"\n$_WHITE\$ "
 fi
 
-export WORKON_HOME=~/venvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=~/venvs
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+    source /usr/local/bin/virtualenvwrapper.sh
+else
+    echo "WARNING: Did not find support for virtualenv. Bypassing"
+fi
 
 # pip bash completion start
 _pip_completion()
