@@ -13,14 +13,15 @@ LOCAL_ALIAS=T-Rex
 if [ -n "$SSH_CLIENT" ]; then
     if [ -n "$REMOTE_ALIAS" ]; then
 	_REMOTE_ALIAS=$REMOTE_ALIAS
-    	_CLIENT="$_YLWBGD$_BLACK" 💻 "$_REMOTE_ALIAS$_BLKBGD"
+        #💻
+    	_CLIENT="$_YLWBGD$_BLUE💻 $_REMOTE_ALIAS$_BLKBGD$_BLUE"
     else
 	HN=$(hostname -a | awk '{print $1 }' )
 	case $HN in
 	    (*"SMHS"*) _REMOTE_ALIAS=GWU-STUDENT-SERVER;;
 	    (*) _REMOTE_ALIAS=REMOTE;;
 	esac
-    	_CLIENT="$_YLWBGD$_BLACK"💻 "$_REMOTE_ALIAS$_BLKBGD"
+    	_CLIENT="$_YLWBGD$_BLUE💻 $_REMOTE_ALIAS$_BLKBGD$_BLUE"
     fi
 else
     if [ -n $LOCAL_ALIAS ]; then
