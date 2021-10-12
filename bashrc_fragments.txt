@@ -1,11 +1,11 @@
 ### Fragment 1
-if [[ -f dotfiles/hostname_mods.sh ]]; then
-    source dotfiles/hostname_mods.sh
+if [[ -f ~/dotfiles/hostname_mods.sh ]]; then
+    source ~/dotfiles/hostname_mods.sh
 fi
 
 ### Fragment 2
-if [[ -f dotfiles/bash_aliases ]]; then
-        source dotfiles/bash_aliases
+if [[ -f ~/dotfiles/bash_aliases ]]; then
+        source ~/dotfiles/bash_aliases
 fi
 
 ### Fragment 3
