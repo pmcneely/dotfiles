@@ -24,6 +24,7 @@ Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'majutsushi/tagbar'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
+Plugin 'flazz/vim-colorschemes'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
@@ -82,7 +83,10 @@ set t_Co=256   " This is may or may not needed.
 
 " set background=light
 " colorscheme PaperColor
-colorscheme slate
+" colorscheme slate
+" set background=dark
+colorscheme PaperColor
+
 
 if has('gui_running')
     set guifont=Lucida_Console:h10
