@@ -220,7 +220,7 @@ prompt_virtualenv() {
 
         color=cyan
         prompt_segment $color $PRIMARY_FG
-        prompt_segment $color white "$(basename $VENV_VERSION)"
+        prompt_segment $color white "$(basename $VIRTUAL_ENV) ($VENV_VERSION)"
     fi
 }
 
