@@ -41,7 +41,7 @@ alias wekan_up='pushd ~/src/wekan/; docker-compose up -d; popd'
 alias wekan_down='pushd ~/src/wekan/; docker-compose down; popd'
 
 
-alias notebook='~/software/joplin/Joplin-2.7.15.AppImage &'
+alias joplin='~/software/joplin/Joplin-2.7.15.AppImage &'
 
 #### Tensorflow/Torch docker image quick launch lines ####
 alias gwu_ag_project='pushd /home/pat/dev/ai-ml-workspace/informatics_projects/artificial_genomes; docker run --rm -it -v "$(pwd)":/proj -u $(id -u):$(id -g) --gpus all ag-image:latest;'
