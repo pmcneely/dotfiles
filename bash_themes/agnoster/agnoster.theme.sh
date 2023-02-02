@@ -217,10 +217,11 @@ prompt_virtualenv() {
         # The last word of the output of `python --version`
         # corresponds to the version number.
         VENV_VERSION=$(echo $VERSION_OUTPUT | awk '{print $NF}')
-
+        # $venv_name=$(`basename \"VIRTUAL_ENV\"`)
         color=cyan
-        prompt_segment $color $PRIMARY_FG
-        prompt_segment $color white "$(basename $VENV_VERSION)"
+        # prompt_segment $color $PRIMARY_FG $venv_name
+        # prompt_segment $color white "$(basename $VENV_VERSION)"
+        prompt_segment $color white "$(basename $VIRTUAL_ENV) (python: $VENV_VERSION)" 
     fi
 }
 
