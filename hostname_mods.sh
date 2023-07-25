@@ -8,7 +8,7 @@ _YLWBGD='\[\e[2;43m\]'
 _REDBGD='\[\e[1;41m\]'
 _BLKBGD='\[\e[40m\]'
 
-LOCAL_ALIAS=T-Rex
+LOCAL_ALIAS=$(hostname)
 
 if [ -n "$SSH_CLIENT" ]; then
     if [ -n "$REMOTE_ALIAS" ]; then
