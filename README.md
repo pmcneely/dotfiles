@@ -6,7 +6,7 @@ Assuming an Ubuntu image...
 4.  `sudo snap install code --classic`
 5.  Install powerline fonts [source](https://github.com/powerline/fonts):
 
-- First:
+- Linux bash:
 
 ```bash
 # clone
@@ -18,6 +18,8 @@ cd fonts
 cd ..
 rm -rf fonts
 ```
+- WSL Bash: Follow instructions [here](https://gist.github.com/stramel/658d702f3af8a86a6fe8b588720e0e23)
+
 
 - Next, set the terminal preferences to a `* for Powerline` font (Terminal -> Hamburger Menu -> Profiles (Current Profile) -> Custom Font). Currently I like `Go Mono for Powerline Regular`.
 
