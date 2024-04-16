@@ -32,6 +32,7 @@ alias rstudio='rstudio &'
 alias reload='source ~/.bashrc'
 alias cls='printf "\033c"'
 alias status='git fetch && git status'
+alias lstatus='git fetch && git status .'
 
 alias traggo_restart='docker run -p 3033:3030 -d -v /opt/traggo/data:/opt/traggo/data --name traggo traggo/server:latest'
 alias traggo_up='docker start traggo'
