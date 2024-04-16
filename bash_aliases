@@ -18,6 +18,13 @@ alias ll='ls -ahlF'
 alias la='ls -A'
 alias l='ls -1'
 
+find_func () (
+    # See https://superuser.com/questions/144772/finding-the-definition-of-a-bash-function
+    shopt -s extdebug;
+    declare -F "$1";
+    type -a "$1";
+)
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
